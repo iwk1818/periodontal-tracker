@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歯周病検査トラッカー</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🦷</div>
+      <div>
+        <h1>歯周病検査トラッカー</h1>
+        <div class="subtitle">BOP・最深ポケットデプスの前回比較</div>
+      </div>
+    </div>
+    <div class="date-label" id="dateLabel"></div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" id="tabInput" onclick="switchTab('input')">📋 データ入力</button>
+    <button class="tab" id="tabResult" onclick="switchTab('result')">📊 比較結果</button>
+  </div>
+
+  <!-- INPUT -->
+  <div class="section active" id="inputSection">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:120px">患者名</th>
+            <th colspan="2" class="col-sep">BOP (%)</th>
+            <th colspan="2" class="col-sep">最深 PPD (mm)</th>
+            <th style="width:36px"></th>
+          </tr>
+          <tr>
+            <th></th>
+            <th class="col-sep">前回</th>
+            <th>今回</th>
+            <th class="col-sep">前回</th>
+            <th>今回</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="patientBody"></tbody>
+      </table>
+    </div>
+    <div class="actions">
+      <button class="btn-add" onclick="addPatient()">＋ 患者を追加</button>
+      <button class="btn-run" onclick="runAnalysis()">比較する →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="section" id="resultSection">
+    <div class="summary-bar">
+      <div class="sum-card">
+        <div class="sum-dot" style="background:var(--red)"></div>
+        <div class="sum-content">
+          <div class="sum-num" id="sumCritical" style="color:var(--red)">—</div>
+          <div class="sum-label">要注意</div>
+        </div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-dot" style="background:#D97706"></div>
+        <div class="sum-content">
+          <div class="sum-num" id="sumWarning" style="color:#D97706">—</div>
+          <div class="sum-label">軽度悪化</div>
+        </div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-dot" style="background:var(--green)"></div>
+        <div class="sum-content">
+          <div class="sum-num" id="sumOk" style="color:var(--green)">—</div>
+          <div class="sum-label">安定</div>
+        </div>
+      </div>
+    </div>
+    <div class="result-list" id="resultList">
+      <div class="empty">「比較する」を押してください</div>
+    </div>
+    <button class="btn-back" onclick="switchTab('input')">← 入力に戻る</button>
+  </div>
+
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
